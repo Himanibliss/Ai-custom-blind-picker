@@ -43,10 +43,18 @@ const questions: Question[] = [
     question: "Any color choice preference?",
     type: "single",
     options: [
-      { value: "white", label: "White / Cream", color: "#F5F5F0" },
-      { value: "gray", label: "Gray / Silver", color: "#9CA3AF" },
-      { value: "brown", label: "Brown / Wood", color: "#8B4513" },
-      { value: "dark", label: "Black / Dark", color: "#1F2937" },
+      { value: "white", label: "White", color: "#FFFFFF" },
+      { value: "beige", label: "Beige", color: "#D4B896" },
+      { value: "pink", label: "Pink", color: "#F4A5B8" },
+      { value: "orange", label: "Orange", color: "#F97316" },
+      { value: "red", label: "Red", color: "#DC2626" },
+      { value: "green", label: "Green", color: "#22C55E" },
+      { value: "purple", label: "Purple", color: "#9333EA" },
+      { value: "brown", label: "Brown", color: "#8B4513" },
+      { value: "gold", label: "Gold", color: "#D4AF37" },
+      { value: "silver", label: "Silver", color: "#C0C0C0" },
+      { value: "gray", label: "Gray", color: "#6B7280" },
+      { value: "black", label: "Black", color: "#1F2937" },
     ],
   },
   {
@@ -159,58 +167,88 @@ const QuestionnaireScreen = ({
           </h2>
 
           {/* Options */}
-          <div className="space-y-3 mb-8">
-            {currentQuestion.options.map((option) => {
-              const isSelected = getCurrentValue() === option.value;
-              
-              return (
-                <button
-                  key={option.value}
-                  onClick={() => handleSelect(option.value)}
-                  className={`
-                    w-full p-4 md:p-5 rounded-xl border-2 transition-all duration-300
-                    flex items-center gap-4 text-left
-                    ${isSelected
-                      ? "border-primary bg-secondary/20 shadow-medium scale-[1.02]"
-                      : "border-border bg-card hover:border-secondary hover:bg-secondary/5"
-                    }
-                  `}
-                >
-                  {/* Color Swatch */}
-                  {option.color && (
-                    <div
-                      className="w-10 h-10 rounded-lg border border-border flex-shrink-0"
-                      style={{ backgroundColor: option.color }}
-                    />
-                  )}
-                  
-                  {/* Icon */}
-                  {option.icon && (
-                    <div className="w-10 h-10 bg-secondary/20 rounded-lg flex items-center justify-center flex-shrink-0 text-primary">
-                      {option.icon}
-                    </div>
-                  )}
-                  
-                  {/* Label */}
-                  <span className="flex-1 font-medium text-primary">{option.label}</span>
-                  
-                  {/* Check */}
-                  <div
+          {currentQuestion.id === "colorChoice" ? (
+            // Grid layout for color options
+            <div className="grid grid-cols-3 sm:grid-cols-4 gap-3 mb-8">
+              {currentQuestion.options.map((option) => {
+                const isSelected = getCurrentValue() === option.value;
+                
+                return (
+                  <button
+                    key={option.value}
+                    onClick={() => handleSelect(option.value)}
                     className={`
-                      w-6 h-6 rounded-full border-2 flex items-center justify-center
-                      transition-all duration-300
+                      p-3 rounded-xl border-2 transition-all duration-300
+                      flex flex-col items-center gap-2
                       ${isSelected
-                        ? "border-primary bg-primary"
-                        : "border-border"
+                        ? "border-primary bg-secondary/20 shadow-medium scale-[1.02]"
+                        : "border-border bg-card hover:border-secondary hover:bg-secondary/5"
                       }
                     `}
                   >
-                    {isSelected && <Check className="w-4 h-4 text-primary-foreground" />}
-                  </div>
-                </button>
-              );
-            })}
-          </div>
+                    <div
+                      className={`w-12 h-12 rounded-lg border flex-shrink-0 ${
+                        option.value === "white" ? "border-gray-300" : "border-transparent"
+                      }`}
+                      style={{ backgroundColor: option.color }}
+                    />
+                    <span className="text-sm font-medium text-primary">{option.label}</span>
+                    {isSelected && (
+                      <div className="w-5 h-5 rounded-full bg-primary flex items-center justify-center">
+                        <Check className="w-3 h-3 text-primary-foreground" />
+                      </div>
+                    )}
+                  </button>
+                );
+              })}
+            </div>
+          ) : (
+            // Standard list layout for other options
+            <div className="space-y-3 mb-8">
+              {currentQuestion.options.map((option) => {
+                const isSelected = getCurrentValue() === option.value;
+                
+                return (
+                  <button
+                    key={option.value}
+                    onClick={() => handleSelect(option.value)}
+                    className={`
+                      w-full p-4 md:p-5 rounded-xl border-2 transition-all duration-300
+                      flex items-center gap-4 text-left
+                      ${isSelected
+                        ? "border-primary bg-secondary/20 shadow-medium scale-[1.02]"
+                        : "border-border bg-card hover:border-secondary hover:bg-secondary/5"
+                      }
+                    `}
+                  >
+                    {/* Icon */}
+                    {option.icon && (
+                      <div className="w-10 h-10 bg-secondary/20 rounded-lg flex items-center justify-center flex-shrink-0 text-primary">
+                        {option.icon}
+                      </div>
+                    )}
+                    
+                    {/* Label */}
+                    <span className="flex-1 font-medium text-primary">{option.label}</span>
+                    
+                    {/* Check */}
+                    <div
+                      className={`
+                        w-6 h-6 rounded-full border-2 flex items-center justify-center
+                        transition-all duration-300
+                        ${isSelected
+                          ? "border-primary bg-primary"
+                          : "border-border"
+                        }
+                      `}
+                    >
+                      {isSelected && <Check className="w-4 h-4 text-primary-foreground" />}
+                    </div>
+                  </button>
+                );
+              })}
+            </div>
+          )}
 
           {/* Navigation Dots */}
           <div className="flex items-center justify-center gap-2 mb-8">
