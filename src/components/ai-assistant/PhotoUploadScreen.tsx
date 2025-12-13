@@ -61,9 +61,38 @@ const PhotoUploadScreen = ({
     }
   };
 
+  const sampleImages = [
+    {
+      id: 'blinds',
+      label: 'Blinds',
+      image: 'https://images.unsplash.com/photo-1513694203232-719a280e022f?w=200&h=200&fit=crop'
+    },
+    {
+      id: 'shades',
+      label: 'Shades',
+      image: 'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=200&h=200&fit=crop'
+    },
+    {
+      id: 'shutters',
+      label: 'Shutters',
+      image: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=200&h=200&fit=crop'
+    },
+    {
+      id: 'drapes',
+      label: 'Drapes',
+      image: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=200&h=200&fit=crop'
+    }
+  ];
+
+  const handleSampleSelect = (imageUrl: string) => {
+    updatePreferences({ photo: imageUrl });
+    setIsAnalyzing(true);
+    setTimeout(() => setIsAnalyzing(false), 2000);
+  };
+
   return (
     <div className="container mx-auto px-4 py-8 md:py-12">
-      <div className="max-w-2xl mx-auto">
+      <div className="max-w-4xl mx-auto">
         {/* Header */}
         <div className="text-center mb-8 animate-fade-in">
           <h2 className="font-display text-2xl md:text-3xl font-bold text-primary mb-3">
@@ -75,57 +104,92 @@ const PhotoUploadScreen = ({
           </p>
         </div>
 
-        {/* Upload Area */}
+        {/* Upload Area - Two Column Layout */}
         <div className="mb-8 animate-slide-up">
           {!preferences.photo ? (
-            <div
-              onDrop={handleDrop}
-              onDragOver={handleDragOver}
-              onDragLeave={handleDragLeave}
-              className={`
-                relative border-2 border-dashed rounded-2xl p-8 md:p-12 text-center
-                transition-all duration-300 cursor-pointer
-                ${isDragging
-                  ? "border-primary bg-secondary/10 scale-[1.02]"
-                  : "border-border hover:border-secondary hover:bg-secondary/5"
-                }
-              `}
-              onClick={() => fileInputRef.current?.click()}
-            >
-              <input
-                ref={fileInputRef}
-                type="file"
-                accept="image/*"
-                className="hidden"
-                onChange={handleInputChange}
-              />
-              
-              <div className="flex flex-col items-center">
-                <div className="w-20 h-20 mb-4 bg-secondary/20 rounded-full flex items-center justify-center">
-                  <Upload className="w-10 h-10 text-primary" />
+            <div className="grid md:grid-cols-2 gap-6 items-stretch">
+              {/* Upload Section */}
+              <div
+                onDrop={handleDrop}
+                onDragOver={handleDragOver}
+                onDragLeave={handleDragLeave}
+                className={`
+                  relative border-2 border-dashed rounded-2xl p-6 text-center
+                  transition-all duration-300 cursor-pointer flex flex-col justify-center
+                  ${isDragging
+                    ? "border-primary bg-secondary/10 scale-[1.02]"
+                    : "border-border hover:border-secondary hover:bg-secondary/5"
+                  }
+                `}
+                onClick={() => fileInputRef.current?.click()}
+              >
+                <input
+                  ref={fileInputRef}
+                  type="file"
+                  accept="image/*"
+                  className="hidden"
+                  onChange={handleInputChange}
+                />
+                
+                <div className="flex flex-col items-center">
+                  <div className="w-14 h-14 mb-3 bg-secondary/20 rounded-full flex items-center justify-center">
+                    <Upload className="w-7 h-7 text-primary" />
+                  </div>
+                  
+                  <h3 className="font-semibold text-primary mb-1 text-sm">
+                    Tap to upload Photo
+                  </h3>
+                  <p className="text-xs text-muted-foreground mb-3">
+                    or drag & drop here
+                  </p>
+                  
+                  <div className="flex flex-wrap gap-2 justify-center">
+                    <Button variant="peachOutline" size="sm" className="gap-1 text-xs">
+                      <Camera className="w-3 h-3" />
+                      Take Photo
+                    </Button>
+                    <Button variant="peachOutline" size="sm" className="gap-1 text-xs">
+                      <ImageIcon className="w-3 h-3" />
+                      Choose File
+                    </Button>
+                  </div>
+                </div>
+              </div>
+
+              {/* Sample Photos Section */}
+              <div className="flex flex-col">
+                <div className="text-center mb-4">
+                  <span className="inline-block px-4 py-1 bg-secondary/20 rounded-full text-sm font-semibold text-primary mb-2">
+                    OR
+                  </span>
+                  <h3 className="font-semibold text-primary text-sm">
+                    Choose one from here
+                  </h3>
                 </div>
                 
-                <h3 className="font-semibold text-primary mb-2">
-                  Drag & drop your photo here
-                </h3>
-                <p className="text-sm text-muted-foreground mb-4">
-                  or click to browse from your device
-                </p>
-                
-                <div className="flex flex-wrap gap-2 justify-center">
-                  <Button variant="peachOutline" size="sm" className="gap-2">
-                    <Camera className="w-4 h-4" />
-                    Take Photo
-                  </Button>
-                  <Button variant="peachOutline" size="sm" className="gap-2">
-                    <ImageIcon className="w-4 h-4" />
-                    Choose File
-                  </Button>
+                <div className="grid grid-cols-2 gap-3 flex-1">
+                  {sampleImages.map((sample) => (
+                    <button
+                      key={sample.id}
+                      onClick={() => handleSampleSelect(sample.image)}
+                      className="group relative rounded-xl overflow-hidden border-2 border-border hover:border-secondary transition-all duration-300 hover:scale-[1.02] hover:shadow-medium"
+                    >
+                      <img
+                        src={sample.image}
+                        alt={sample.label}
+                        className="w-full h-24 md:h-28 object-cover"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-primary/70 to-transparent opacity-80 group-hover:opacity-90 transition-opacity" />
+                      <span className="absolute bottom-2 left-2 text-primary-foreground text-xs font-semibold">
+                        {sample.label}
+                      </span>
+                    </button>
+                  ))}
                 </div>
               </div>
             </div>
           ) : (
-            <div className="relative rounded-2xl overflow-hidden shadow-medium">
+            <div className="relative rounded-2xl overflow-hidden shadow-medium max-w-2xl mx-auto">
               <img
                 src={preferences.photo}
                 alt="Uploaded room"
@@ -173,7 +237,7 @@ const PhotoUploadScreen = ({
         </div>
 
         {/* Tips */}
-        <div className="bg-card rounded-xl p-5 mb-8 shadow-soft animate-fade-in" style={{ animationDelay: "0.2s" }}>
+        <div className="bg-card rounded-xl p-5 mb-8 shadow-soft animate-fade-in max-w-2xl mx-auto" style={{ animationDelay: "0.2s" }}>
           <h4 className="font-semibold text-primary mb-3">Tips for Best Results</h4>
           <ul className="grid md:grid-cols-2 gap-2 text-sm text-muted-foreground">
             <li className="flex items-start gap-2">
@@ -196,13 +260,13 @@ const PhotoUploadScreen = ({
         </div>
 
         {/* Actions */}
-        <div className="flex flex-col sm:flex-row gap-3 animate-scale-in" style={{ animationDelay: "0.3s" }}>
+        <div className="flex flex-col items-center gap-3 animate-scale-in" style={{ animationDelay: "0.3s" }}>
           {preferences.photo && !isAnalyzing ? (
-            <Button variant="hero" size="lg" onClick={onNext} className="flex-1">
+            <Button variant="hero" size="lg" onClick={onNext} className="w-full max-w-xs">
               Next
             </Button>
           ) : (
-            <Button variant="ghost" size="sm" onClick={onSkip} className="text-muted-foreground hover:text-primary">
+            <Button variant="peach" size="sm" onClick={onSkip}>
               Skip for now
             </Button>
           )}
