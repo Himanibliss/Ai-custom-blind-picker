@@ -202,8 +202,8 @@ const PhotoUploadScreen = ({
               Next
             </Button>
           ) : (
-            <Button variant="heroLight" size="lg" onClick={onSkip} className="flex-1">
-              Skip for Now
+            <Button variant="ghost" size="sm" onClick={onSkip} className="text-muted-foreground hover:text-primary">
+              Skip for now
             </Button>
           )}
         </div>
