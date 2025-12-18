@@ -1,0 +1,4 @@
+project_id = "evgqwaepaihxcapuaumg"
+
+[functions.generate-blinds-visualization]
+verify_jwt = false
