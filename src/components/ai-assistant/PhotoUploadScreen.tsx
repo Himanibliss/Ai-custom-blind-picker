@@ -105,14 +105,17 @@ const PhotoUploadScreen = ({
         </div>
 
         {/* Privacy Disclaimer */}
-        <div className="bg-amber-50 border border-amber-200 rounded-xl p-4 mb-6 animate-fade-in max-w-2xl mx-auto">
+        <div 
+          className="border rounded-xl p-4 mb-6 animate-fade-in"
+          style={{ backgroundColor: '#E8DBC2', borderColor: '#D4C4A8' }}
+        >
           <div className="flex items-start gap-3">
-            <Shield className="w-5 h-5 text-amber-600 mt-0.5 flex-shrink-0" />
+            <Shield className="w-5 h-5 mt-0.5 flex-shrink-0" style={{ color: '#8B7355' }} />
             <div>
-              <h4 className="font-semibold text-amber-800 mb-1 text-sm">
+              <h4 className="font-semibold mb-1 text-sm" style={{ color: '#5C4A32' }}>
                 Image Use & Privacy Disclaimer:
               </h4>
-              <p className="text-amber-700 text-sm">
+              <p className="text-sm" style={{ color: '#6B5B45' }}>
                 Uploaded photos are used only to generate ideas and visualize blinds in your space. 
                 Any sensitive or personal information in the images will be hidden or removed.
               </p>
