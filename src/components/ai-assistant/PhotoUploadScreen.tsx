@@ -1,7 +1,7 @@
 import { useState, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { UserPreferences } from "@/pages/AIAssistant";
-import { Camera, Upload, Image as ImageIcon, X, Sparkles, MapPin } from "lucide-react";
+import { Camera, Upload, Image as ImageIcon, X, Sparkles, MapPin, Shield } from "lucide-react";
 
 interface PhotoUploadScreenProps {
   onNext: () => void;
@@ -102,6 +102,22 @@ const PhotoUploadScreen = ({
             Share a photo of your window or room for AI-powered visualization. Our technology 
             will analyze the space and show you how different blinds will look.
           </p>
+        </div>
+
+        {/* Privacy Disclaimer */}
+        <div className="bg-amber-50 border border-amber-200 rounded-xl p-4 mb-6 animate-fade-in max-w-2xl mx-auto">
+          <div className="flex items-start gap-3">
+            <Shield className="w-5 h-5 text-amber-600 mt-0.5 flex-shrink-0" />
+            <div>
+              <h4 className="font-semibold text-amber-800 mb-1 text-sm">
+                Image Use & Privacy Disclaimer:
+              </h4>
+              <p className="text-amber-700 text-sm">
+                Uploaded photos are used only to generate ideas and visualize blinds in your space. 
+                Any sensitive or personal information in the images will be hidden or removed.
+              </p>
+            </div>
+          </div>
         </div>
 
         {/* Upload Area - Two Column Layout */}
