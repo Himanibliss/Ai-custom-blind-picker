@@ -17,7 +17,7 @@ const FloatingChatButton = () => {
         className="w-10 h-10 rounded-full object-cover"
       />
       <span className="text-foreground font-medium text-sm pr-2">
-        Talk to Human Design Expert
+        Talk to Human Blinds Expert
       </span>
     </button>
   );
