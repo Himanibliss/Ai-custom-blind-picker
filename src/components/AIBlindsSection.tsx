@@ -62,6 +62,9 @@ const AIBlindsSection = () => {
               See My Options
               <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
             </Button>
+            <p className="text-[11px] text-muted-foreground mt-3 max-w-md mx-auto lg:mx-0">
+              AI helps you explore options but always review and consult a human design expert before deciding.
+            </p>
           </div>
 
           {/* Visual */}
