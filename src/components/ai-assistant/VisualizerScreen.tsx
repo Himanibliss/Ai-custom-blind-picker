@@ -268,12 +268,6 @@ const VisualizerScreen = ({
                   </>
                 )}
 
-                {/* AI Badge */}
-                {!isLoading && !error && (
-                  <div className="absolute top-4 right-16 px-3 py-1.5 bg-primary text-primary-foreground text-xs font-semibold rounded-full shadow-medium z-10">
-                    {generatedImage && viewMode === 'ai' ? 'AI Generated' : 'AI Preview'}
-                  </div>
-                )}
 
                 {/* Actions */}
                 {!isLoading && !error && (
@@ -314,6 +308,12 @@ const VisualizerScreen = ({
                             <RotateCcw className="w-3 h-3" />
                             Reset
                           </Button>
+                          {preferences.photo && (
+                            <Button variant="ghost" size="sm" onClick={() => updatePreferences({ photo: undefined })} className="gap-1 text-xs">
+                              <Camera className="w-3 h-3" />
+                              Change photo
+                            </Button>
+                          )}
                         </div>
                       </div>
                     </div>
