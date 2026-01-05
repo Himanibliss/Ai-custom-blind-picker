@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { UserPreferences } from "@/pages/AIAssistant";
-import { Sun, Moon, Check, ArrowRight } from "lucide-react";
+import { Sun, Moon, Check, ArrowRight, Square, SquareDashedBottom, Zap, Hand } from "lucide-react";
 
 interface QuestionnaireScreenProps {
   onNext: () => void;
@@ -61,8 +61,8 @@ const questions: Question[] = [
     question: "What type of mount do you prefer?",
     type: "single",
     options: [
-      { value: "inside", label: "Inside Mount" },
-      { value: "outside", label: "Outside Mount" },
+      { value: "inside", label: "Inside Mount", icon: <Square className="w-5 h-5" /> },
+      { value: "outside", label: "Outside Mount", icon: <SquareDashedBottom className="w-5 h-5" /> },
     ],
   },
   {
@@ -70,8 +70,8 @@ const questions: Question[] = [
     question: "Would you like motorized operation?",
     type: "boolean",
     options: [
-      { value: "true", label: "Yes, Motorized" },
-      { value: "false", label: "No, Manual/Cordless" },
+      { value: "true", label: "Yes, Motorized", icon: <Zap className="w-5 h-5" /> },
+      { value: "false", label: "No, Manual/Cordless", icon: <Hand className="w-5 h-5" /> },
     ],
   },
   {
@@ -132,6 +132,11 @@ const QuestionnaireScreen = ({
   return (
     <div className="container mx-auto px-4 py-8 md:py-12">
       <div className="max-w-xl mx-auto">
+        {/* Section Heading */}
+        <h1 className="font-display text-2xl md:text-3xl font-bold text-primary text-center mb-6">
+          Customize Your Style
+        </h1>
+        
         {/* Progress */}
         <div className="mb-8 sticky top-0 bg-background/95 backdrop-blur-sm py-4 -mt-4 z-10">
           <div className="flex items-center justify-between text-sm text-muted-foreground mb-2">
@@ -160,8 +165,8 @@ const QuestionnaireScreen = ({
 
                 {/* Options */}
                 {question.id === "colorChoice" ? (
-                  // Grid layout for color options
-                  <div className="grid grid-cols-3 sm:grid-cols-4 gap-3">
+                  // Compact circular color swatches
+                  <div className="flex flex-wrap gap-3 justify-center">
                     {question.options.map((option) => {
                       const isSelected = currentValue === option.value;
                       
@@ -169,27 +174,24 @@ const QuestionnaireScreen = ({
                         <button
                           key={option.value}
                           onClick={() => handleSelect(question, option.value)}
-                          className={`
-                            p-3 rounded-xl border-2 transition-all duration-300
-                            flex flex-col items-center gap-2
-                            ${isSelected
-                              ? "border-primary bg-secondary/20 shadow-medium scale-[1.02]"
-                              : "border-border bg-card hover:border-secondary hover:bg-secondary/5"
-                            }
-                          `}
+                          className="flex flex-col items-center gap-1.5 group"
+                          title={option.label}
                         >
                           <div
-                            className={`w-12 h-12 rounded-lg border flex-shrink-0 ${
-                              option.value === "white" ? "border-gray-300" : "border-transparent"
-                            }`}
+                            className={`
+                              w-9 h-9 rounded-full transition-all duration-300
+                              ring-offset-2 ring-offset-background
+                              ${option.value === "white" ? "ring-1 ring-inset ring-gray-300" : ""}
+                              ${isSelected
+                                ? "ring-2 ring-primary scale-110 shadow-md"
+                                : "hover:scale-105 hover:shadow-sm"
+                              }
+                            `}
                             style={{ backgroundColor: option.color }}
                           />
-                          <span className="text-sm font-medium text-primary">{option.label}</span>
-                          {isSelected && (
-                            <div className="w-5 h-5 rounded-full bg-primary flex items-center justify-center">
-                              <Check className="w-3 h-3 text-primary-foreground" />
-                            </div>
-                          )}
+                          <span className={`text-xs font-medium transition-colors ${isSelected ? "text-primary" : "text-muted-foreground group-hover:text-primary"}`}>
+                            {option.label}
+                          </span>
                         </button>
                       );
                     })}
