@@ -2,7 +2,7 @@ import { useState, useEffect, useCallback } from "react";
 import { Button } from "@/components/ui/button";
 import { UserPreferences } from "@/pages/AIAssistant";
 import { Slider } from "@/components/ui/slider";
-import { ArrowRight, RotateCcw, Heart, Share2, Wand2, Camera, AlertTriangle, ImageOff, Sparkles, RefreshCw, Moon, CloudMoon, SunDim, Sun } from "lucide-react";
+import { ArrowRight, RotateCcw, Heart, Share2, Wand2, Camera, AlertTriangle, ImageOff, Sparkles, RefreshCw, Moon, CloudMoon, SunDim, Sun, Blinds, PanelTop, DoorClosed, GripVertical } from "lucide-react";
 import { generateBlindsVisualization } from "@/services/blindsAIService";
 import { toast } from "sonner";
 
@@ -13,10 +13,10 @@ interface VisualizerScreenProps {
 }
 
 const styleOptions = [
-  { id: "blinds", name: "Blinds", type: "blinds" },
-  { id: "shades", name: "Shades", type: "shades" },
-  { id: "shutters", name: "Shutters", type: "shutters" },
-  { id: "drapes", name: "Drapes", type: "drapes" },
+  { id: "blinds", name: "Blinds", type: "blinds", icon: Blinds },
+  { id: "shades", name: "Shades", type: "shades", icon: PanelTop },
+  { id: "shutters", name: "Shutters", type: "shutters", icon: DoorClosed },
+  { id: "drapes", name: "Drapes", type: "drapes", icon: GripVertical },
 ];
 
 const colorOptions = [
@@ -342,22 +342,26 @@ const VisualizerScreen = ({
             {/* Style Selection */}
             <div className="bg-card rounded-xl p-4 shadow-soft">
               <h3 className="font-semibold text-primary text-sm mb-3">Style</h3>
-              <div className="grid grid-cols-2 gap-2">
-                {styleOptions.map((style) => (
-                  <button
-                    key={style.id}
-                    onClick={() => handleStyleChange(style)}
-                    className={`
-                      p-3 rounded-lg border-2 transition-all text-center
-                      ${selectedStyle.id === style.id
-                        ? "border-primary bg-secondary/20"
-                        : "border-border hover:border-secondary"
-                      }
-                    `}
-                  >
-                    <span className="text-sm font-medium text-primary">{style.name}</span>
-                  </button>
-                ))}
+              <div className="flex flex-wrap gap-2 justify-center">
+                {styleOptions.map((style) => {
+                  const IconComponent = style.icon;
+                  return (
+                    <button
+                      key={style.id}
+                      onClick={() => handleStyleChange(style)}
+                      className={`
+                        px-2.5 py-1.5 rounded-lg border-2 transition-all flex items-center gap-1.5
+                        ${selectedStyle.id === style.id
+                          ? "border-primary bg-secondary/20"
+                          : "border-border hover:border-secondary"
+                        }
+                      `}
+                    >
+                      <IconComponent className="w-3.5 h-3.5 text-muted-foreground" />
+                      <span className="text-xs font-medium text-primary">{style.name}</span>
+                    </button>
+                  );
+                })}
               </div>
             </div>
 
