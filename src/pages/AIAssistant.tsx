@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import IntroScreen from "@/components/ai-assistant/IntroScreen";
 import PhotoUploadScreen from "@/components/ai-assistant/PhotoUploadScreen";
 import QuestionnaireScreen from "@/components/ai-assistant/QuestionnaireScreen";
-import LoadingScreen from "@/components/ai-assistant/LoadingScreen";
+
 import VisualizerScreen from "@/components/ai-assistant/VisualizerScreen";
 import ProductDetailScreen from "@/components/ai-assistant/ProductDetailScreen";
 import MeasurementScreen from "@/components/ai-assistant/MeasurementScreen";
@@ -16,7 +16,6 @@ export type AIAssistantStep =
   | "intro"
   | "photo-upload"
   | "questionnaire"
-  | "loading"
   | "visualizer"
   | "product-detail"
   | "measurement"
@@ -51,7 +50,6 @@ const AIAssistant = () => {
     "intro",
     "photo-upload",
     "questionnaire",
-    "loading",
     "visualizer",
     "product-detail",
     "measurement",
@@ -103,8 +101,6 @@ const AIAssistant = () => {
             updatePreferences={updatePreferences}
           />
         );
-      case "loading":
-        return <LoadingScreen onComplete={handleNext} />;
       case "visualizer":
         return (
           <VisualizerScreen
@@ -147,8 +143,7 @@ const AIAssistant = () => {
       </Helmet>
       
       <div className="min-h-screen bg-tertiary flex flex-col">
-        {/* Header - hidden during loading */}
-        {currentStep !== "loading" && (
+        {/* Header */}
         <header className="sticky top-0 z-50 bg-card shadow-soft">
           <div className="container mx-auto px-4 py-4">
             <div className="flex items-center justify-between">
@@ -198,7 +193,6 @@ const AIAssistant = () => {
             </div>
           </div>
         </header>
-        )}
 
         {/* Content */}
         <main className="flex-1 overflow-auto">
