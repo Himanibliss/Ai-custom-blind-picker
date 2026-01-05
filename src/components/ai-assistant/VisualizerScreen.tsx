@@ -364,28 +364,30 @@ const VisualizerScreen = ({
             {/* Color Selection */}
             <div className="bg-card rounded-xl p-4 shadow-soft">
               <h3 className="font-semibold text-primary text-sm mb-3">Color</h3>
-              <div className="grid grid-cols-4 gap-2">
+              <div className="flex flex-wrap gap-3 justify-center">
                 {colorOptions.map((color) => (
                   <button
                     key={color.id}
                     onClick={() => handleColorChange(color)}
                     className={`
-                      w-full aspect-square rounded-lg border-2 transition-all flex items-center justify-center
+                      relative w-10 h-10 rounded-full transition-all duration-200
                       ${selectedColor.id === color.id
-                        ? "border-primary scale-105 shadow-medium ring-2 ring-secondary/30"
-                        : "border-border hover:scale-105"
+                        ? "ring-[3px] ring-blue-500 ring-offset-2 ring-offset-card scale-110"
+                        : "hover:scale-105"
                       }
                     `}
                     style={{ backgroundColor: color.hex }}
                     title={color.name}
                   >
-                    {selectedColor.id === color.id && (
-                      <div className="w-3 h-3 rounded-full bg-primary border-2 border-white" />
-                    )}
+                    {/* Inner border for light colors */}
+                    <span 
+                      className="absolute inset-0 rounded-full border border-black/10"
+                      aria-hidden="true"
+                    />
                   </button>
                 ))}
               </div>
-              <p className="text-xs text-muted-foreground mt-2 text-center">{selectedColor.name}</p>
+              <p className="text-xs text-muted-foreground mt-3 text-center">{selectedColor.name}</p>
             </div>
 
             {/* Opacity Selection */}
