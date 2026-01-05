@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { Sparkles, Camera, MessageSquare, Eye, ArrowRight } from "lucide-react";
+import { Sparkles, Camera, MessageSquare, Eye, ArrowRight, Ruler, CheckCircle } from "lucide-react";
 
 interface IntroScreenProps {
   onNext: () => void;
@@ -19,13 +19,23 @@ const IntroScreen = ({ onNext }: IntroScreenProps) => {
     },
     {
       icon: Sparkles,
-      title: "AI Analysis",
-      description: "Our AI analyzes your space & needs",
+      title: "AI Generated Visualization",
+      description: "See blinds rendered in your space",
     },
     {
       icon: Eye,
-      title: "Visualize",
-      description: "See blinds in your actual room",
+      title: "View Recommendations",
+      description: "Browse personalized suggestions",
+    },
+    {
+      icon: Ruler,
+      title: "Measure",
+      description: "Get accurate measurements",
+    },
+    {
+      icon: CheckCircle,
+      title: "Find Perfect Match",
+      description: "Choose your ideal window treatment",
     },
   ];
 
@@ -55,7 +65,7 @@ const IntroScreen = ({ onNext }: IntroScreenProps) => {
             How It Works
           </h3>
           
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
             {steps.map((step, index) => (
               <div
                 key={index}
