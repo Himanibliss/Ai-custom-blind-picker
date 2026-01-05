@@ -421,20 +421,6 @@ const VisualizerScreen = ({
               </div>
             </div>
 
-            {/* Info Card */}
-            {!generatedImage && preferences.photo && !isLoading && (
-              <div className="bg-secondary/20 rounded-xl p-4 border border-secondary/30">
-                <div className="flex items-start gap-3">
-                  <Sparkles className="w-5 h-5 text-secondary flex-shrink-0 mt-0.5" />
-                  <div>
-                    <p className="text-sm font-medium text-primary">Ready to visualize</p>
-                    <p className="text-xs text-muted-foreground mt-1">
-                      Select your preferences and click "Generate AI Preview" to see realistic blinds on your window.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            )}
           </div>
         </div>
 
