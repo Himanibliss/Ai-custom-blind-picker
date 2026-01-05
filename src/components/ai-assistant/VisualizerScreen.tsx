@@ -2,7 +2,7 @@ import { useState, useEffect, useCallback } from "react";
 import { Button } from "@/components/ui/button";
 import { UserPreferences } from "@/pages/AIAssistant";
 import { Slider } from "@/components/ui/slider";
-import { ArrowRight, RotateCcw, Heart, Share2, Wand2, Camera, AlertTriangle, ImageOff, Sparkles, RefreshCw } from "lucide-react";
+import { ArrowRight, RotateCcw, Heart, Share2, Wand2, Camera, AlertTriangle, ImageOff, Sparkles, RefreshCw, Moon, CloudMoon, SunDim, Sun } from "lucide-react";
 import { generateBlindsVisualization } from "@/services/blindsAIService";
 import { toast } from "sonner";
 
@@ -35,10 +35,10 @@ const colorOptions = [
 ];
 
 const opacityOptions = [
-  { id: "blackout", name: "Blackout", value: 95 },
-  { id: "room-darkening", name: "Room Darkening", value: 75 },
-  { id: "light-filtering", name: "Light Filtering", value: 50 },
-  { id: "sheer", name: "Sheer", value: 25 },
+  { id: "blackout", name: "Blackout", value: 95, icon: Moon },
+  { id: "room-darkening", name: "Room Darkening", value: 75, icon: CloudMoon },
+  { id: "light-filtering", name: "Light Filtering", value: 50, icon: SunDim },
+  { id: "sheer", name: "Sheer", value: 25, icon: Sun },
 ];
 
 const loadingMessages = [
@@ -393,29 +393,26 @@ const VisualizerScreen = ({
             {/* Opacity Selection */}
             <div className="bg-card rounded-xl p-4 shadow-soft">
               <h3 className="font-semibold text-primary text-sm mb-3">Light Control</h3>
-              <div className="space-y-2">
-                {opacityOptions.map((opacity) => (
-                  <button
-                    key={opacity.id}
-                    onClick={() => handleOpacityChange(opacity)}
-                    className={`
-                      w-full p-2.5 rounded-lg border-2 transition-all flex items-center justify-between
-                      ${selectedOpacity.id === opacity.id
-                        ? "border-primary bg-secondary/20"
-                        : "border-border hover:border-secondary"
-                      }
-                    `}
-                  >
-                    <span className="text-xs font-medium text-primary">{opacity.name}</span>
-                    <div 
-                      className="w-16 h-4 rounded border border-border"
-                      style={{ 
-                        background: `linear-gradient(to right, transparent, ${selectedColor.hex})`,
-                        opacity: opacity.value / 100 
-                      }} 
-                    />
-                  </button>
-                ))}
+              <div className="flex flex-wrap gap-2 justify-center">
+                {opacityOptions.map((opacity) => {
+                  const IconComponent = opacity.icon;
+                  return (
+                    <button
+                      key={opacity.id}
+                      onClick={() => handleOpacityChange(opacity)}
+                      className={`
+                        px-2.5 py-1.5 rounded-lg border-2 transition-all flex items-center gap-1.5
+                        ${selectedOpacity.id === opacity.id
+                          ? "border-primary bg-secondary/20"
+                          : "border-border hover:border-secondary"
+                        }
+                      `}
+                    >
+                      <IconComponent className="w-3.5 h-3.5 text-muted-foreground" />
+                      <span className="text-xs font-medium text-primary whitespace-nowrap">{opacity.name}</span>
+                    </button>
+                  );
+                })}
               </div>
             </div>
 
