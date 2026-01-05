@@ -2,7 +2,8 @@ import { useState, useEffect, useCallback } from "react";
 import { Button } from "@/components/ui/button";
 import { UserPreferences } from "@/pages/AIAssistant";
 import { Slider } from "@/components/ui/slider";
-import { ArrowRight, RotateCcw, Heart, Share2, Wand2, Camera, AlertTriangle, ImageOff, Sparkles, RefreshCw, Moon, CloudMoon, SunDim, Sun, Blinds, PanelTop, DoorClosed, GripVertical } from "lucide-react";
+import { ArrowRight, RotateCcw, Heart, Share2, Wand2, Camera, AlertTriangle, ImageOff, Sparkles, RefreshCw, Moon, CloudMoon, SunDim, Sun, Blinds, PanelTop } from "lucide-react";
+import { ShuttersIcon, DrapesIcon } from "@/components/icons/BlindsIcons";
 import { generateBlindsVisualization } from "@/services/blindsAIService";
 import { toast } from "sonner";
 
@@ -15,8 +16,8 @@ interface VisualizerScreenProps {
 const styleOptions = [
   { id: "blinds", name: "Blinds", type: "blinds", icon: Blinds },
   { id: "shades", name: "Shades", type: "shades", icon: PanelTop },
-  { id: "shutters", name: "Shutters", type: "shutters", icon: DoorClosed },
-  { id: "drapes", name: "Drapes", type: "drapes", icon: GripVertical },
+  { id: "shutters", name: "Shutters", type: "shutters", icon: ShuttersIcon },
+  { id: "drapes", name: "Drapes", type: "drapes", icon: DrapesIcon },
 ];
 
 const colorOptions = [
