@@ -60,35 +60,29 @@ const IntroScreen = ({ onNext }: IntroScreenProps) => {
         </div>
 
         {/* How It Works */}
-        <div className="bg-card rounded-2xl shadow-medium p-6 md:p-8 mb-8 animate-slide-up">
-          <h3 className="font-display text-xl font-semibold text-primary mb-6 text-center">
+        <div className="bg-card rounded-2xl shadow-medium p-5 md:p-6 mb-8 animate-slide-up">
+          <h3 className="font-display text-lg font-semibold text-primary mb-5 text-center">
             How It Works
           </h3>
           
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+          <div className="grid grid-cols-3 gap-x-3 gap-y-4">
             {steps.map((step, index) => (
               <div
                 key={index}
-                className="relative text-center p-4 animate-fade-in"
-                style={{ animationDelay: `${index * 0.1}s` }}
+                className="text-center animate-fade-in"
+                style={{ animationDelay: `${index * 0.08}s` }}
               >
-                {/* Connector Line */}
-                {index < steps.length - 1 && (
-                  <div className="hidden md:block absolute top-8 left-[60%] w-[80%] h-0.5 bg-gradient-to-r from-secondary to-secondary/30" />
-                )}
-                
-                {/* Step Number */}
-                <div className="relative">
-                  <div className="w-16 h-16 mx-auto mb-3 bg-secondary/20 rounded-full flex items-center justify-center">
-                    <step.icon className="w-7 h-7 text-primary" />
+                <div className="relative inline-block mb-2">
+                  <div className="w-11 h-11 bg-secondary/15 rounded-full flex items-center justify-center">
+                    <step.icon className="w-5 h-5 text-primary" />
                   </div>
-                  <div className="absolute -top-1 -right-1 w-6 h-6 bg-primary text-primary-foreground text-xs font-bold rounded-full flex items-center justify-center">
+                  <span className="absolute -top-0.5 -right-0.5 w-4 h-4 bg-primary text-primary-foreground text-[10px] font-bold rounded-full flex items-center justify-center">
                     {index + 1}
-                  </div>
+                  </span>
                 </div>
                 
-                <h4 className="font-semibold text-primary text-sm mb-1">{step.title}</h4>
-                <p className="text-xs text-muted-foreground">{step.description}</p>
+                <h4 className="font-semibold text-primary text-xs leading-tight mb-0.5">{step.title}</h4>
+                <p className="text-[10px] text-muted-foreground leading-tight">{step.description}</p>
               </div>
             ))}
           </div>
