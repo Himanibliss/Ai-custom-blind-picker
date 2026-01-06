@@ -338,9 +338,9 @@ const VisualizerScreen = ({
           </div>
 
           {/* Controls Panel */}
-          <div className="space-y-6 animate-fade-in" style={{
+          <div style={{
           animationDelay: "0.2s"
-        }}>
+        }} className="space-y-6 animate-fade-in my-0">
             {/* Style Selection */}
             <div className="bg-card rounded-xl p-4 shadow-soft">
               <h3 className="font-semibold text-primary text-sm mb-3">Style</h3>
@@ -372,7 +372,7 @@ const VisualizerScreen = ({
                     <span className="absolute inset-0 rounded-full border border-black/10" aria-hidden="true" />
                   </button>)}
               </div>
-              <p className="text-xs text-muted-foreground mt-3 text-center">{selectedColor.name}</p>
+              <p className="text-muted-foreground mt-3 text-center font-medium text-sm">{selectedColor.name}</p>
             </div>
 
             {/* Opacity Selection */}
