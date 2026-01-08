@@ -4,12 +4,13 @@ import curtainsDrapesImg from "@/assets/curtains-drapes.png";
 import outdoorShadesImg from "@/assets/outdoor-shades.png";
 import shuttersImg from "@/assets/shutters.png";
 import rollerShadesImg from "@/assets/roller-shades.png";
+import cellularShadesImg from "@/assets/cellular-shades.png";
 
 const categories = [
   {
     name: "Cellular Shades",
     description: "Energy efficient & stylish",
-    image: "https://images.unsplash.com/photo-1616046229478-9901c5536a45?w=400&h=300&fit=crop",
+    image: cellularShadesImg,
   },
   {
     name: "Roller Shades",
