@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import woodBlindsImg from "@/assets/wood-blinds.png";
 
 const categories = [
   {
@@ -14,7 +15,7 @@ const categories = [
   {
     name: "Wood Blinds",
     description: "Classic natural beauty",
-    image: "https://images.unsplash.com/photo-1513694203232-719a280e022f?w=400&h=300&fit=crop",
+    image: woodBlindsImg,
   },
   {
     name: "Shutters",
