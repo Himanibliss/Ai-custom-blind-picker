@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import woodBlindsImg from "@/assets/wood-blinds.png";
 import curtainsDrapesImg from "@/assets/curtains-drapes.png";
 import outdoorShadesImg from "@/assets/outdoor-shades.png";
+import shuttersImg from "@/assets/shutters.png";
 
 const categories = [
   {
@@ -22,7 +23,7 @@ const categories = [
   {
     name: "Shutters",
     description: "Timeless elegance",
-    image: "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?w=400&h=300&fit=crop",
+    image: shuttersImg,
   },
   {
     name: "Curtains & Drapes",
