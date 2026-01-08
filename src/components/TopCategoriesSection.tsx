@@ -14,7 +14,7 @@ const categories = [
   {
     name: "Wood Blinds",
     description: "Classic natural beauty",
-    image: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=400&h=300&fit=crop",
+    image: "https://images.unsplash.com/photo-1513694203232-719a280e022f?w=400&h=300&fit=crop",
   },
   {
     name: "Shutters",
