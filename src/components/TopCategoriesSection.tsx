@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import woodBlindsImg from "@/assets/wood-blinds.png";
 import curtainsDrapesImg from "@/assets/curtains-drapes.png";
+import outdoorShadesImg from "@/assets/outdoor-shades.png";
 
 const categories = [
   {
@@ -31,7 +32,7 @@ const categories = [
   {
     name: "Outdoor Shades",
     description: "Weather resistant",
-    image: "https://images.unsplash.com/photo-1600566752355-35792bedcfea?w=400&h=300&fit=crop",
+    image: outdoorShadesImg,
   },
 ];
 
