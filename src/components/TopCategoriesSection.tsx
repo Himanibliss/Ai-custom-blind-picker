@@ -3,6 +3,7 @@ import woodBlindsImg from "@/assets/wood-blinds.png";
 import curtainsDrapesImg from "@/assets/curtains-drapes.png";
 import outdoorShadesImg from "@/assets/outdoor-shades.png";
 import shuttersImg from "@/assets/shutters.png";
+import rollerShadesImg from "@/assets/roller-shades.png";
 
 const categories = [
   {
@@ -13,7 +14,7 @@ const categories = [
   {
     name: "Roller Shades",
     description: "Sleek & modern design",
-    image: "https://images.unsplash.com/photo-1513694203232-719a280e022f?w=400&h=300&fit=crop",
+    image: rollerShadesImg,
   },
   {
     name: "Wood Blinds",
