@@ -41,8 +41,8 @@ const AIAssistant = () => {
     blindType: "",
     colorChoice: "",
     mountType: "",
-    motorized: false,
-    childSafety: false,
+    motorized: undefined as unknown as boolean,
+    childSafety: undefined as unknown as boolean,
     budget: "",
   });
 
