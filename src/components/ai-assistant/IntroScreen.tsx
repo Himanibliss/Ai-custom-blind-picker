@@ -96,9 +96,9 @@ const IntroScreen = ({ onNext }: IntroScreenProps) => {
                 <span className="text-green-600 text-lg">✓</span>
               </div>
               <div>
-                <h4 className="font-semibold text-primary text-sm mb-1">AR Technology</h4>
+                <h4 className="font-semibold text-primary text-sm mb-1">Image Generation with AI</h4>
                 <p className="text-xs text-muted-foreground">
-                  See how blinds look in your actual room with augmented reality
+                  See how blinds look in your actual room with AI-generated imagery
                 </p>
               </div>
             </div>
